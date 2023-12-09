@@ -425,17 +425,17 @@ export default function Drawing() {
             const canvasRect = bglayer.current.getBoundingClientRect();
             const canvasX = canvasRect.left
             const canvasY = canvasRect.top
-            const vedioScaleX = webcam.current.videoWidth / webcamRect.width
-            const vedioScaleY = webcam.current.videoHeight / webcamRect.height
+            const videoScaleX = webcam.current.videoWidth / webcamRect.width
+            const videoScaleY = webcam.current.videoHeight / webcamRect.height
             // smooth x,y
             const smoothPosition = smoothCoordinate(x, y);
             //change trackingdiv x,y
-            trackingdiv.current.style.left = smoothPosition.x / vedioScaleX + 'px'
-            trackingdiv.current.style.top = smoothPosition.y / vedioScaleY + 'px'
+            trackingdiv.current.style.left = smoothPosition.x / videoScaleX + 'px'
+            trackingdiv.current.style.top = smoothPosition.y / videoScaleY + 'px'
             // draw 
             if (isDraw) {
-              drawLine(((webcamX - canvasX) + (smoothPosition.x / vedioScaleX)) / (contentScale * canvasState.initialScale),
-                ((webcamY - canvasY) + (smoothPosition.y / vedioScaleY)) / (contentScale * canvasState.initialScale))
+              drawLine(((webcamX - canvasX) + (smoothPosition.x / videoScaleX)) / (contentScale * canvasState.initialScale),
+                ((webcamY - canvasY) + (smoothPosition.y / videoScaleY)) / (contentScale * canvasState.initialScale))
             } else {
               ctx.draw.beginPath();
             }
