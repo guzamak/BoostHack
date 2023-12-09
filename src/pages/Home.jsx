@@ -150,9 +150,9 @@ export default function Home() {
       {/* hero */}
       <div className='hero min-h-[50vh] bg-gray-100 shadow-inner	'>
         <div className='flex flex-col justify-center items-start px-[5vw] w-full h-full'>
-          <h6 className=" font-bold  font-KAUFMANN">
+          <h5 className=" font-bold  font-KAUFMANN">
             this not meme draw this mouth draw
-          </h6>
+          </h5>
         </div>
       </div>
 

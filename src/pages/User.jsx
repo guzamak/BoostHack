@@ -250,9 +250,9 @@ export default function User() {
         {/* hero */}
         <div className='hero min-h-[50vh] bg-gray-100 shadow-inner	'>
           <div className='flex flex-col justify-center items-start px-[5vw] w-full h-full'>
-            <h6 className=" font-bold  font-KAUFMANN">
+            <h5 className=" font-bold  font-KAUFMANN">
               {checkUser != "NoUser" ? <>{user && user.uid == checkUser ? "User's Art" : `${username}'s Art`}</> : null}
-            </h6>
+            </h5>
             <p className=' my-3 font-extralight'>
               user/{username}
             </p>
