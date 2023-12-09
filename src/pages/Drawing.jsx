@@ -666,7 +666,7 @@ export default function Drawing() {
 
       {/* when save compelete */}
       <div className='fixed flex text-green-800 bg-green-200 bg-opacity-90 p-6 w-screen pointer-events-none opacity-0 ransition-all duration-300' ref={savePopUp}>
-        <p>save compeleted</p>
+        <p>save compeleted </p>
         <AiOutlineCheck />
       </div>
 
