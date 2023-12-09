@@ -547,9 +547,9 @@ export default function Drawing() {
 
         <div className={`fixed top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 ${ctx.bg && "hidden"} `}>
           <BsPlusSquareFill className='w-[45vmin] h-[45vmin] text-gray-300' onClick={() => document.getElementById('my_modal_1').showModal()} />
-          <div className='text-gray-600 mt-2 justify-center items-center'>
-            <p className='flex text-xs'>click <BsPlusSquareFill /> to create canvas </p>
-            <p className='flex text-xs'>move mouth and press spacebar or torch <RiEdit2Line /> in phone  to draw</p>
+          <div className='text-gray-600 mt-2 justify-center items-center w-[45vmin] '>
+            <p className='flex text-xs  '>click + to create canvas 
+            move mouth and press spacebar or torch pencil in phone to draw</p>
           </div>
         </div>
       </div>
