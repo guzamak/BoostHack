@@ -51,20 +51,20 @@ export default function Drawing() {
 
   const { user } = useContext(Authcontext)
 
-  let smoothedX = null;
-  let smoothedY = null;
-  let smoothingFactor = 0.8
+  const smoothedX = useRef(null)
+  const smoothedY  = useRef(null)
+  const smoothingFactor = useRef(0.8)
 
   const smoothCoordinate = useCallback((x, y) => {
 
-    if (smoothedX === null || smoothedY === null) {
-      smoothedX = x;
-      smoothedY = y;
+    if (smoothedX.current === null || smoothedY.current === null) {
+      smoothedX.current = x;
+      smoothedY.current = y;
     } else {
-      smoothedX = smoothingFactor * smoothedX + (1 - smoothingFactor) * x;
-      smoothedY = smoothingFactor * smoothedY + (1 - smoothingFactor) * y;
+      smoothedX.current = smoothingFactor.current * smoothedX.current + (1 - smoothingFactor.current) * x;
+      smoothedY.current = smoothingFactor.current * smoothedY.current + (1 - smoothingFactor.current) * y;
     }
-    return { x: smoothedX, y: smoothedY };
+    return { x: smoothedX.current, y: smoothedY.current };
   }, [])
 
 
