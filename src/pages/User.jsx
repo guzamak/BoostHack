@@ -1,13 +1,13 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { Authcontext } from '../App'
-import { auth, db, storage } from '../firebase-config'
-import { getDoc, getDocs, query, where, doc, collection, orderBy, updateDoc, arrayUnion, arrayRemove, deleteDoc, limit, startAfter } from '@firebase/firestore'
-import { getDownloadURL, ref, deleteObject } from '@firebase/storage'
-import { useNavigate, useParams } from 'react-router'
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
-import { FiTrash2 } from 'react-icons/fi'
-import Loading from '../components/Loading'
-import Error from '../components/Error'
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react"
+import { Authcontext } from "../App"
+import { auth, db, storage } from "../firebase-config"
+import { getDoc, getDocs, query, where, doc, collection, orderBy, updateDoc, arrayUnion, arrayRemove, deleteDoc, limit, startAfter } from "@firebase/firestore"
+import { getDownloadURL, ref, deleteObject } from "@firebase/storage"
+import { useNavigate, useParams } from "react-router"
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
+import { FiTrash2 } from "react-icons/fi"
+import Loading from "../components/Loading"
+import Error from "../components/Error"
 
 export default function User() {
 
@@ -25,7 +25,7 @@ export default function User() {
   const getdata = async () => {
     setImgList([])
     setimgLoading(true)
-    const finduser = await getDocs(query(collection(db, "user"), where('username', '==', username)))
+    const finduser = await getDocs(query(collection(db, "user"), where("username", "==", username)))
 
     if (!finduser.docs[0]) {
       setCheckUser("NoUser")
@@ -175,7 +175,7 @@ export default function User() {
 
   const clickimg = (imgUrl) => {
     setCurrentImg(imgUrl)
-    document.getElementById('my_modal_2').showModal()
+    document.getElementById("my_modal_2").showModal()
   }
 
   const getMoreData = async () => {
@@ -244,16 +244,16 @@ export default function User() {
 
 
   return (
-    <section className=''>
+    <section className="">
 
       {checkUser != "NoUser" ? <>
         {/* hero */}
-        <div className='hero min-h-[50vh] bg-gray-100 shadow-inner	'>
-          <div className='flex flex-col justify-center items-start px-[5vw] w-full h-full'>
+        <div className="hero min-h-[50vh] bg-gray-100 shadow-inner">
+          <div className="flex flex-col justify-center items-start px-[5vw] w-full h-full">
             <h5 className=" font-bold  font-KAUFMANN">
-              {checkUser != "NoUser" ? <>{user && user.uid == checkUser ? "User's Art" : `${username}'s Art`}</> : null}
+              {checkUser != "NoUser" ? <>{user && user.uid == checkUser ? "User's Art" : `${username}"s Art`}</> : null}
             </h5>
-            <p className=' my-3 font-extralight'>
+            <p className=" my-3 font-extralight">
               user/{username}
             </p>
           </div>
@@ -277,39 +277,39 @@ export default function User() {
             </div>
 
             {/* img container */}
-            <div className="grid grid-cols-1 gap-8 mt-20 xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 lg:grid-cols-3 ">
+            <div className="grid grid-cols-1 gap-8 mt-20 xs:grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 lg:grid-cols-3">
 
               {/* img element */}
 
               {imgList.length != 0 &&
                 imgList.map((img) => {
-                  return <div key={img.id} className='h-96 overflow-hidden rounded-2xl shadow-[rgba(50,_50,_105,_0.10)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.025)_0px_1px_1px_0px]'>
+                  return <div key={img.id} className="h-96 overflow-hidden rounded-2xl shadow-[rgba(50,_50,_105,_0.10)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.025)_0px_1px_1px_0px]">
                     {/* img */}
                     <div class="w-full h-[82%]">
-                      <img src={img.data.url} className='object-cover h-full w-full' onClick={() => { clickimg(img.data.url) }} />
+                      <img src={img.data.url} className="object-cover h-full w-full" onClick={() => { clickimg(img.data.url) }} />
 
                     </div>
                     {/* desc section */}
-                    <div className='flex px-5 py-5 w-full justify-between items-center '>
+                    <div className="flex px-5 py-5 w-full justify-between items-center ">
                       {user ? user.uid == img.data.userId ?
-                        <div className='border border-gray-500 text-gray-500 text-center p-2 px-5 rounded-2xl hover:bg-black hover:text-white hover:border-none transition-all duration-200 ease-in'>
+                        <div className="border border-gray-500 text-gray-500 text-center p-2 px-5 rounded-2xl hover:bg-black hover:text-white hover:border-none transition-all duration-200 ease-in">
                           {img.data.post ? <button onClick={() => { unpost(img.id) }}>unpost</button> : <button onClick={() => { post(img.id) }}>post</button>}
                         </div> :
-                        <div className=''>
+                        <div className="">
                           {/* if userlogin != urluser */}
                           {img.data.owner}
                         </div> :
-                        <div className=''>
+                        <div className="">
                           {/* if user not have */}
                           {img.data.owner}
                         </div>}
 
-                      <div className='flex justify-center items-center '>
-                        <p className='px-3'>{img.data.userLike.length}</p>
+                      <div className="flex justify-center items-center ">
+                        <p className="px-3">{img.data.userLike.length}</p>
                         <button onClick={() => { like(img.id) }}>
-                          {user ? img.data.userLike.includes(user.uid) ? <AiFillHeart /> : <AiOutlineHeart /> : <AiOutlineHeart className='text-gray-300' />}
+                          {user ? img.data.userLike.includes(user.uid) ? <AiFillHeart /> : <AiOutlineHeart /> : <AiOutlineHeart className="text-gray-300" />}
                         </button>
-                        {user ? user.uid == img.data.userId ? <button onClick={() => { deleteImg(img.id) }} className='px-2 text-red-300'>
+                        {user ? user.uid == img.data.userId ? <button onClick={() => { deleteImg(img.id) }} className="px-2 text-red-300">
                           <FiTrash2 />
                         </button> : null : null}
                       </div>
@@ -328,13 +328,13 @@ export default function User() {
 
 
         {!imgLoading ?
-          <div className='flex justify-center my-9'>
-            <button className='border border-gray-500 text-gray-500 text-center p-2 px-5 rounded-xl hover:bg-black hover:text-white hover:border-none transition-all duration-200 ease-in'
+          <div className="flex justify-center my-9">
+            <button className="border border-gray-500 text-gray-500 text-center p-2 px-5 rounded-xl hover:bg-black hover:text-white hover:border-none transition-all duration-200 ease-in"
               onClick={getMoreData}
             >Load more img
             </button>
           </div>
-          : <div className='my-9'><Loading /></div>}
+          : <div className="my-9"><Loading /></div>}
 
         <dialog id="my_modal_2" className="modal">
           <div className="modal-box shadow-[rgba(50,_50,_105,_0.10)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.025)_0px_1px_1px_0px]">
