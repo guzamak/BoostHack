@@ -244,7 +244,7 @@ export default function User() {
 
 
   return (
-    <section className="">
+    <section>
 
       {checkUser != "NoUser" ? <>
         {/* hero */}
