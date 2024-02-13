@@ -77,7 +77,7 @@ export default function Drawing() {
     ctx.draw.stroke();
     ctx.draw.beginPath();
     ctx.draw.moveTo(x, y);
-    ctx.draw.globalCompositeOperation = "source-over" //change mode before save 
+    ctx.draw.globalCompositeOperation = "source-over" // change mode before save 
     setUndoStack([...undoStack,drawlayer.current.toDataURL()])
     setRedoStack([])
   }, [ctx, canvasState, undoStack])
@@ -90,7 +90,7 @@ export default function Drawing() {
     setIsDraw(false)
   }, [])
 
-  //paning and zoom
+  // paning and zoom
   const handleMouseDown = useCallback((e) => {
     setViewportState({
       ...viewportState,
@@ -112,9 +112,9 @@ export default function Drawing() {
   const handleMouseMove = useCallback((e) => {
     e.preventDefault();
     if (viewportState.isMouseDown && !isDraw) {
-      const x = e.pageX - scrollableDiv.current.offsetLeft;//endx
+      const x = e.pageX - scrollableDiv.current.offsetLeft;// endx
       const y = e.pageY - scrollableDiv.current.offsetTop;
-      const walkX = (x - viewportState.startX) * 0.5; // value(startx-endx) * speed
+      const walkX = (x - viewportState.startX) * 0.5; // value (startx-endx) * speed
       const walkY = (y - viewportState.startY) * 0.5;
       scrollableDiv.current.scrollLeft = viewportState.startScrollLeft - walkX;
       scrollableDiv.current.scrollTop = viewportState.startScrollTop - walkY;
@@ -125,14 +125,13 @@ export default function Drawing() {
     if (e.ctrlKey && !isDraw && ctx.draw) {
       const currentZoom = contentScale;
       const zoomFactor = 1 + e.deltaY * 0.001;
-
-      const newZoom = Math.round(Math.min(Math.max(currentZoom * zoomFactor, 0.1), 5) * 100) / 100;
+      const newZoom = Math.round(Math.min(Math.max(currentZoom * zoomFactor, 0.1), 2) * 100) / 100;
       setContentScale(newZoom);
     }
   }, [isDraw, contentScale, ctx])
 
 
-  // //zoom in phone
+  //zoom in phone
 
   const handleTouchStart = useCallback((e) => {
     if (e.touches.length === 1) {
@@ -148,7 +147,8 @@ export default function Drawing() {
     if (e.touches.length === 2) {
       setViewportState({
         ...viewportState,
-        initialDistance: Math.hypot(e.touches[0].pageX - e.touches[1].pageX,
+        initialDistance: Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
           e.touches[0].pageY - e.touches[1].pageY)
       })
     }
@@ -324,11 +324,8 @@ export default function Drawing() {
      }else {
       setCreateError("please enter numbers only")
      }
-      
-
-        
+              
       resizeCanvas()
-
 
     }
   }
@@ -359,7 +356,7 @@ export default function Drawing() {
   }, [ctx, isDraw])
 
 
-  //start and end draw undo
+  // start and end draw undo
   useEffect(() => {
     const keydown = (e) => {
       if (e.code === "Space") {
