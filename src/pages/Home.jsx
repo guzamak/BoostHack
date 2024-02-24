@@ -148,7 +148,7 @@ export default function Home() {
     <section>
 
       {/* hero */}
-      <div className="hero min-h-[50vh] bg-gray-100 shadow-inner	">
+      <div className="hero min-h-[50vh] bg-gray-100 shadow-inner">
         <div className="flex flex-col justify-center items-start px-[5vw] w-full h-full">
           <h5 className="font-bold  font-KAUFMANN">
             this not meme draw this mouth draw
