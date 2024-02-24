@@ -177,13 +177,13 @@ export default function Home() {
               imgList.map((img) => {
                 return <div key={img.id} className="h-96 overflow-hidden rounded-2xl shadow-[rgba(50,_50,_105,_0.10)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.025)_0px_1px_1px_0px]">
                   {/* img */}
-                  <div class="w-full h-[82%]">
+                  <div className="w-full h-[82%]">
                     <img src={img.data.url} className="object-cover h-full w-full" onClick={() => { clickimg(img.data.url) }} />
 
                   </div>
                   {/* desc section */}
                   <div className="flex px-5 py-5 w-full justify-between items-center ">
-                    <div className="">
+                    <div>
                       <Link to={`user/${img.data.owner}`}>{img.data.owner}</Link>
                     </div>
 
